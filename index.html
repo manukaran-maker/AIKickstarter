@@ -324,15 +324,30 @@
      Format: "YYYY-MM-DDTHH:MM:SS+05:30" (IST offset)
   ═══════════════════════════════════════════════ */
   var SESSION_CONFIG = {
-    date:     "2026-06-06T10:00:00+05:30",  // IST datetime
+    date:        "2026-06-06T10:00:00+05:30",  // IST datetime
     dateDisplay: "Saturday, June 6",
     timeDisplay: "10:00 AM IST / 5:30 AM BST",
-    price:    "$100 USD",
-    seats:    "10",
-    paymentLink: "https://rzp.io/rzp/QkuQTpi",
+    price:       "$100 USD",
+    priceIndia:  "₹4,999",
+    seats:       "10",
+    paymentLink:      "https://rzp.io/rzp/QkuQTpi",
     paymentLinkIndia: "https://rzp.io/rzp/hpJrdjqT"
   };
   /* ═══════════════════════════════════════════════ */
+
+  // Geo-detect once, then init everything
+  function initPage() {
+    fetch("https://ipapi.co/json/")
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        if (data.country_code === "IN") {
+          SESSION_CONFIG.price       = SESSION_CONFIG.priceIndia;
+          SESSION_CONFIG.paymentLink = SESSION_CONFIG.paymentLinkIndia;
+        }
+        initBanner();
+      })
+      .catch(function() { initBanner(); });
+  }
 
   function initBanner() {
     var cfg = SESSION_CONFIG;
@@ -355,6 +370,8 @@
       document.getElementById("fmt-date").textContent  = cfg.dateDisplay;
       document.getElementById("fmt-time").textContent  = cfg.timeDisplay;
       document.getElementById("fmt-seats").textContent = "Max " + cfg.seats;
+      document.getElementById("fmt-price").textContent = cfg.price;
+      document.getElementById("cta-price-tag").textContent = cfg.price;
 
       // Show payment CTA
       var ctaSection = document.getElementById("cta-active");
@@ -370,29 +387,10 @@
 
       // Show/hide payment button vs coming soon
       var payBtn = document.getElementById("pay-btn");
-      if (cfg.paymentLink) {
-        payBtn.textContent = "Proceed to Payment — " + cfg.price;
-        payBtn.onclick = function() {
-          // Detect country via free IP geolocation, fall back to international link
-          fetch("https://ipapi.co/json/")
-            .then(function(r) { return r.json(); })
-            .then(function(data) {
-              var link = (data.country_code === "IN" && cfg.paymentLinkIndia)
-                ? cfg.paymentLinkIndia
-                : cfg.paymentLink;
-              window.location.href = link;
-            })
-            .catch(function() {
-              window.location.href = cfg.paymentLink;
-            });
-        };
-      } else {
-        payBtn.textContent = "Proceed to Payment — " + cfg.price;
-        payBtn.onclick = function() {
-          document.getElementById("pay-confirm").style.display = "block";
-          this.style.display = "none";
-        };
-      }
+      payBtn.textContent = "Proceed to Payment — " + cfg.price;
+      payBtn.onclick = function() {
+        window.location.href = cfg.paymentLink;
+      };
 
     } else {
       // No upcoming session
@@ -419,7 +417,7 @@
     }
   }
 
-  document.addEventListener("DOMContentLoaded", initBanner);
+  document.addEventListener("DOMContentLoaded", initPage);
 </script>
 
 <!-- ═══════════════════════ STICKY BANNER ═══════════════════════ -->
@@ -573,7 +571,7 @@
     </div>
     <div class="format-item">
       <div class="fi-label">Price</div>
-      <div class="fi-value">$100 USD</div>
+      <div class="fi-value" id="fmt-price">$100 USD</div>
     </div>
   </div>
 </section>
@@ -588,7 +586,7 @@
     <h2 id="cta-headline">Stop watching AI change your industry.<br>Start using it.</h2>
     <p id="cta-sub">Seats are strictly limited to 10 participants. Once full, registration closes.</p>
 
-    <div class="price-tag"><span>$</span>100 <span style="font-size:16px;vertical-align:middle;font-weight:400;color:#b0bec5;">USD</span></div>
+    <div class="price-tag" id="cta-price-tag"><span>$</span>100 <span style="font-size:16px;vertical-align:middle;font-weight:400;color:#b0bec5;">USD</span></div>
 
     <div class="reg-box">
       <div class="reg-title">Register for the June 6 Session</div>
