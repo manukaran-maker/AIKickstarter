@@ -329,7 +329,8 @@
     timeDisplay: "10:00 AM IST / 5:30 AM BST",
     price:    "$100 USD",
     seats:    "10",
-    paymentLink: "https://rzp.io/rzp/QkuQTpi"
+    paymentLink: "https://rzp.io/rzp/QkuQTpi",
+    paymentLinkIndia: "https://rzp.io/rzp/hpJrdjqT"
   };
   /* ═══════════════════════════════════════════════ */
 
@@ -372,7 +373,18 @@
       if (cfg.paymentLink) {
         payBtn.textContent = "Proceed to Payment — " + cfg.price;
         payBtn.onclick = function() {
-          window.location.href = cfg.paymentLink;
+          // Detect country via free IP geolocation, fall back to international link
+          fetch("https://ipapi.co/json/")
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+              var link = (data.country_code === "IN" && cfg.paymentLinkIndia)
+                ? cfg.paymentLinkIndia
+                : cfg.paymentLink;
+              window.location.href = link;
+            })
+            .catch(function() {
+              window.location.href = cfg.paymentLink;
+            });
         };
       } else {
         payBtn.textContent = "Proceed to Payment — " + cfg.price;
