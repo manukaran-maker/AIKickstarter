@@ -324,13 +324,14 @@
      Format: "YYYY-MM-DDTHH:MM:SS+05:30" (IST offset)
   ═══════════════════════════════════════════════ */
   var SESSION_CONFIG = {
-    date:        "2026-06-06T10:00:00+05:30",  // IST datetime
-    dateDisplay: "Saturday, June 6",
-    timeDisplay: "10:00 AM IST / 5:30 AM BST",
-    price:       "USD 100",
-    priceIndia:  "INR 4,999",
-    priceUK:     "GBP 120",
-    seats:       "10",
+    date:            "2026-06-13T13:30:00+05:30",  // IST datetime
+    dateDisplay:     "Saturday, June 13",
+    timeDisplay:     "1:30 PM IST",
+    timeDisplayUK:   "9:00 AM BST",
+    price:           "USD 100",
+    priceIndia:      "INR 4,999",
+    priceUK:         "GBP 120",
+    seats:           "10",
     paymentLink:      "https://rzp.io/rzp/QkuQTpi",
     paymentLinkIndia: "https://rzp.io/rzp/hpJrdjqT"
   };
@@ -346,7 +347,7 @@
           SESSION_CONFIG.paymentLink = SESSION_CONFIG.paymentLinkIndia;
         } else if (data.country_code === "GB") {
           SESSION_CONFIG.price       = SESSION_CONFIG.priceUK;
-          // UK uses the same international payment link
+          SESSION_CONFIG.timeDisplay = SESSION_CONFIG.timeDisplayUK;
         }
         initBanner();
       })
@@ -407,6 +408,8 @@
       document.getElementById("fmt-date").textContent  = "Coming soon";
       document.getElementById("fmt-time").textContent  = "TBA";
       document.getElementById("fmt-seats").textContent = "Max " + cfg.seats;
+      document.getElementById("fmt-price").textContent = cfg.price;
+      document.getElementById("cta-price-tag").textContent = cfg.price;
 
       // Show waitlist CTA
       var ctaSection = document.getElementById("cta-active");
