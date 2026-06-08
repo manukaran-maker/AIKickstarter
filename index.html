@@ -323,11 +323,23 @@
      Set NEXT_SESSION_DATE to null if no date confirmed
      Format: "YYYY-MM-DDTHH:MM:SS+05:30" (IST offset)
   ═══════════════════════════════════════════════ */
+  // Batch A: 9:00 AM IST (India + US + rest of world)
+  // Batch B: 1:30 PM IST / 9:00 AM BST (UK + Europe)
+  var BATCH_A = {
+    date:        "2026-06-13T09:00:00+05:30",
+    dateDisplay: "Saturday, June 13",
+    timeDisplay: "9:00 AM IST"
+  };
+  var BATCH_B = {
+    date:        "2026-06-13T13:30:00+05:30",
+    dateDisplay: "Saturday, June 13",
+    timeDisplay: "9:00 AM BST"
+  };
+
   var SESSION_CONFIG = {
-    date:            "2026-06-13T13:30:00+05:30",  // IST datetime
-    dateDisplay:     "Saturday, June 13",
-    timeDisplay:     "1:30 PM IST",
-    timeDisplayUK:   "9:00 AM BST",
+    date:        BATCH_A.date,
+    dateDisplay: BATCH_A.dateDisplay,
+    timeDisplay: BATCH_A.timeDisplay,
     price:           "USD 100",
     priceIndia:      "INR 4,999",
     priceUK:         "GBP 120",
@@ -342,12 +354,30 @@
     fetch("https://ipapi.co/json/")
       .then(function(r) { return r.json(); })
       .then(function(data) {
+        var europeanCountries = ["GB","DE","FR","IT","ES","NL","BE","SE","NO","DK","FI","AT","CH","PT","IE","PL","CZ","RO","HU","GR","HR","SK","SI","EE","LV","LT","LU","MT","CY","BG"];
+        var isEurope = europeanCountries.indexOf(data.country_code) !== -1;
+
         if (data.country_code === "IN") {
+          // India batch: 9 AM IST, INR pricing, India payment link
           SESSION_CONFIG.price       = SESSION_CONFIG.priceIndia;
           SESSION_CONFIG.paymentLink = SESSION_CONFIG.paymentLinkIndia;
-        } else if (data.country_code === "GB") {
-          SESSION_CONFIG.price       = SESSION_CONFIG.priceUK;
-          SESSION_CONFIG.timeDisplay = SESSION_CONFIG.timeDisplayUK;
+          SESSION_CONFIG.date        = BATCH_A.date;
+          SESSION_CONFIG.dateDisplay = BATCH_A.dateDisplay;
+          SESSION_CONFIG.timeDisplay = BATCH_A.timeDisplay;
+        } else if (isEurope) {
+          // UK/Europe batch: 9 AM BST, local pricing
+          SESSION_CONFIG.date        = BATCH_B.date;
+          SESSION_CONFIG.dateDisplay = BATCH_B.dateDisplay;
+          SESSION_CONFIG.timeDisplay = BATCH_B.timeDisplay;
+          if (data.country_code === "GB") {
+            SESSION_CONFIG.price = SESSION_CONFIG.priceUK;
+          }
+          // other European countries keep USD 100
+        } else {
+          // US + rest of world: 9 AM IST batch, USD pricing
+          SESSION_CONFIG.date        = BATCH_A.date;
+          SESSION_CONFIG.dateDisplay = BATCH_A.dateDisplay;
+          SESSION_CONFIG.timeDisplay = BATCH_A.timeDisplay;
         }
         initBanner();
       })
