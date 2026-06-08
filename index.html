@@ -327,8 +327,9 @@
     date:        "2026-06-06T10:00:00+05:30",  // IST datetime
     dateDisplay: "Saturday, June 6",
     timeDisplay: "10:00 AM IST / 5:30 AM BST",
-    price:       "$100 USD",
-    priceIndia:  "₹4,999",
+    price:       "USD 100",
+    priceIndia:  "INR 4,999",
+    priceUK:     "GBP 120",
     seats:       "10",
     paymentLink:      "https://rzp.io/rzp/QkuQTpi",
     paymentLinkIndia: "https://rzp.io/rzp/hpJrdjqT"
@@ -343,6 +344,9 @@
         if (data.country_code === "IN") {
           SESSION_CONFIG.price       = SESSION_CONFIG.priceIndia;
           SESSION_CONFIG.paymentLink = SESSION_CONFIG.paymentLinkIndia;
+        } else if (data.country_code === "GB") {
+          SESSION_CONFIG.price       = SESSION_CONFIG.priceUK;
+          // UK uses the same international payment link
         }
         initBanner();
       })
@@ -571,7 +575,7 @@
     </div>
     <div class="format-item">
       <div class="fi-label">Price</div>
-      <div class="fi-value" id="fmt-price">$100 USD</div>
+      <div class="fi-value" id="fmt-price">USD 100</div>
     </div>
   </div>
 </section>
