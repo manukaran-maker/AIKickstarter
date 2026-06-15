@@ -351,39 +351,70 @@
   /* ═══════════════════════════════════════════════ */
 
   // Geo-detect once, then init everything
+  function applyGeo(countryCode) {
+    var europeanCountries = ["GB","DE","FR","IT","ES","NL","BE","SE","NO","DK","FI","AT","CH","PT","IE","PL","CZ","RO","HU","GR","HR","SK","SI","EE","LV","LT","LU","MT","CY","BG"];
+    var isEurope = europeanCountries.indexOf(countryCode) !== -1;
+
+    if (countryCode === "IN") {
+      // India batch: INR pricing, India payment link
+      SESSION_CONFIG.price       = SESSION_CONFIG.priceIndia;
+      SESSION_CONFIG.paymentLink = SESSION_CONFIG.paymentLinkIndia;
+      SESSION_CONFIG.date        = BATCH_A.date;
+      SESSION_CONFIG.dateDisplay = BATCH_A.dateDisplay;
+      SESSION_CONFIG.timeDisplay = BATCH_A.timeDisplay;
+    } else if (isEurope) {
+      // UK/Europe batch: local pricing
+      SESSION_CONFIG.date        = BATCH_B.date;
+      SESSION_CONFIG.dateDisplay = BATCH_B.dateDisplay;
+      SESSION_CONFIG.timeDisplay = BATCH_B.timeDisplay;
+      if (countryCode === "GB") {
+        SESSION_CONFIG.price       = SESSION_CONFIG.priceUK;
+        SESSION_CONFIG.paymentLink = SESSION_CONFIG.paymentLinkUK;
+      }
+      // other European countries keep USD 100
+    } else {
+      // US + rest of world: USD pricing
+      SESSION_CONFIG.date        = BATCH_A.date;
+      SESSION_CONFIG.dateDisplay = BATCH_A.dateDisplay;
+      SESSION_CONFIG.timeDisplay = BATCH_A.timeDisplay;
+    }
+  }
+
+  function guessCountryFromTimezone() {
+    try {
+      var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+      if (tz === "Asia/Calcutta" || tz === "Asia/Kolkata") return "IN";
+      if (tz === "Europe/London") return "GB";
+    } catch (e) {}
+    return null;
+  }
+
   function initPage() {
     fetch("https://ipapi.co/json/")
-      .then(function(r) { return r.json(); })
+      .then(function(r) {
+        if (!r.ok) throw new Error("ipapi failed");
+        return r.json();
+      })
       .then(function(data) {
-        var europeanCountries = ["GB","DE","FR","IT","ES","NL","BE","SE","NO","DK","FI","AT","CH","PT","IE","PL","CZ","RO","HU","GR","HR","SK","SI","EE","LV","LT","LU","MT","CY","BG"];
-        var isEurope = europeanCountries.indexOf(data.country_code) !== -1;
-
-        if (data.country_code === "IN") {
-          // India batch: 9 AM IST, INR pricing, India payment link
-          SESSION_CONFIG.price       = SESSION_CONFIG.priceIndia;
-          SESSION_CONFIG.paymentLink = SESSION_CONFIG.paymentLinkIndia;
-          SESSION_CONFIG.date        = BATCH_A.date;
-          SESSION_CONFIG.dateDisplay = BATCH_A.dateDisplay;
-          SESSION_CONFIG.timeDisplay = BATCH_A.timeDisplay;
-        } else if (isEurope) {
-          // UK/Europe batch: 9 AM BST, local pricing
-          SESSION_CONFIG.date        = BATCH_B.date;
-          SESSION_CONFIG.dateDisplay = BATCH_B.dateDisplay;
-          SESSION_CONFIG.timeDisplay = BATCH_B.timeDisplay;
-          if (data.country_code === "GB") {
-            SESSION_CONFIG.price       = SESSION_CONFIG.priceUK;
-            SESSION_CONFIG.paymentLink = SESSION_CONFIG.paymentLinkUK;
-          }
-          // other European countries keep USD 100
-        } else {
-          // US + rest of world: 9 AM IST batch, USD pricing
-          SESSION_CONFIG.date        = BATCH_A.date;
-          SESSION_CONFIG.dateDisplay = BATCH_A.dateDisplay;
-          SESSION_CONFIG.timeDisplay = BATCH_A.timeDisplay;
-        }
+        if (!data || !data.country_code) throw new Error("no country code");
+        applyGeo(data.country_code);
         initBanner();
       })
-      .catch(function() { initBanner(); });
+      .catch(function() {
+        // Primary geo lookup failed — try a fallback provider
+        fetch("https://ipwho.is/")
+          .then(function(r) { return r.json(); })
+          .then(function(data) {
+            var code = (data && data.success !== false && data.country_code) ? data.country_code : guessCountryFromTimezone();
+            applyGeo(code);
+            initBanner();
+          })
+          .catch(function() {
+            // Both lookups failed — fall back to timezone heuristic
+            applyGeo(guessCountryFromTimezone());
+            initBanner();
+          });
+      });
   }
 
   function initBanner() {
@@ -409,6 +440,7 @@
       document.getElementById("fmt-seats").textContent = "Max " + cfg.seats;
       document.getElementById("fmt-price").textContent = cfg.price;
       document.getElementById("cta-price-tag").textContent = cfg.price;
+      document.getElementById("reg-title").textContent = "Register for the " + cfg.dateDisplay + " Session";
 
       // Show payment CTA
       var ctaSection = document.getElementById("cta-active");
@@ -628,7 +660,7 @@
     <div class="price-tag" id="cta-price-tag"><span>$</span>100 <span style="font-size:16px;vertical-align:middle;font-weight:400;color:#b0bec5;">USD</span></div>
 
     <div class="reg-box">
-      <div class="reg-title">Register for the June 6 Session</div>
+      <div class="reg-title" id="reg-title">Register for the Session</div>
       <input type="text" placeholder="Your full name" id="reg-name" />
       <input type="email" placeholder="Work email address" id="reg-email" />
       <input type="text" placeholder="Job title & company" id="reg-role" />
