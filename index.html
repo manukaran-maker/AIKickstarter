@@ -345,7 +345,8 @@
     priceUK:         "GBP 120",
     seats:           "10",
     paymentLink:      "https://rzp.io/rzp/QkuQTpi",
-    paymentLinkIndia: "https://rzp.io/rzp/hpJrdjqT"
+    paymentLinkIndia: "https://rzp.io/rzp/hpJrdjqT",
+    paymentLinkUK:    "https://rzp.io/rzp/HiOPYXk"
   };
   /* ═══════════════════════════════════════════════ */
 
@@ -370,7 +371,8 @@
           SESSION_CONFIG.dateDisplay = BATCH_B.dateDisplay;
           SESSION_CONFIG.timeDisplay = BATCH_B.timeDisplay;
           if (data.country_code === "GB") {
-            SESSION_CONFIG.price = SESSION_CONFIG.priceUK;
+            SESSION_CONFIG.price       = SESSION_CONFIG.priceUK;
+            SESSION_CONFIG.paymentLink = SESSION_CONFIG.paymentLinkUK;
           }
           // other European countries keep USD 100
         } else {
