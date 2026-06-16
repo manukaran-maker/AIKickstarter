@@ -3,7 +3,49 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Kickstarter for Non-Technical Professionals</title>
+
+  <!-- SEO -->
+  <title>AI Kickstarter — Practical AI Workshop for Non-Technical Professionals</title>
+  <meta name="description" content="A live, hands-on AI workshop for non-technical professionals in finance, marketing, sales, HR and operations. Learn to automate your daily work with ChatGPT and Claude in just 2 hours a day — no coding required. Small cohorts, full refund guarantee." />
+  <meta name="keywords" content="AI workshop, AI training for professionals, ChatGPT for work, Claude AI course, AI for non-technical, AI automation, AI for finance, AI for marketing, AI for sales, AI for HR, online AI course" />
+  <meta name="author" content="Manu — AI Kickstarter" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://manukaran-maker.github.io/AIKickstarter/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="AI Kickstarter — Practical AI Workshop for Non-Technical Professionals" />
+  <meta property="og:description" content="Learn to automate the repetitive parts of your job with AI — in 2 hours a day, no coding required. Live online, small cohorts, full refund guarantee." />
+  <meta property="og:url" content="https://manukaran-maker.github.io/AIKickstarter/" />
+  <meta property="og:site_name" content="AI Kickstarter" />
+  <meta property="og:image" content="https://manukaran-maker.github.io/AIKickstarter/assets/instructor-manu.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI Kickstarter — Practical AI Workshop for Non-Technical Professionals" />
+  <meta name="twitter:description" content="Learn to automate the repetitive parts of your job with AI — in 2 hours a day, no coding required. Live online, small cohorts." />
+  <meta name="twitter:image" content="https://manukaran-maker.github.io/AIKickstarter/assets/instructor-manu.png" />
+
+  <!-- Structured data: Course + Instructor -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "AI Kickstarter for Non-Technical Professionals",
+    "description": "A live, hands-on AI workshop teaching non-technical professionals how to automate everyday work with AI tools like ChatGPT and Claude — no coding required.",
+    "url": "https://manukaran-maker.github.io/AIKickstarter/",
+    "provider": { "@type": "Organization", "name": "AI Kickstarter", "url": "https://manukaran-maker.github.io/AIKickstarter/" },
+    "instructor": {
+      "@type": "Person",
+      "name": "Manu",
+      "jobTitle": "AI Trainer & Sales / Business Development Leader",
+      "description": "Master's in Computer Engineering and an MBA in Marketing & IT Operations, with 21+ years in senior Sales & Business Development roles across global organizations. Has trained 100+ professionals and entrepreneurs and 3 companies through corporate workshops."
+    },
+    "hasCourseInstance": { "@type": "CourseInstance", "courseMode": "Online", "courseWorkload": "PT2H", "instructor": { "@type": "Person", "name": "Manu" } },
+    "offers": { "@type": "Offer", "category": "Paid", "priceCurrency": "USD", "price": "100", "availability": "https://schema.org/LimitedAvailability" }
+  }
+  </script>
+
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -169,6 +211,31 @@
     .testimonial-card blockquote::after  { content: '\201D'; color: #00c2b2; font-size: 24px; line-height: 0; vertical-align: -8px; margin-left: 3px; }
     .testimonial-attr { font-size: 13px; font-weight: 600; color: #78909c; }
     .testimonial-attr span { color: #00c2b2; }
+
+    /* HERO STATS BAR */
+    .hero-stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 36px; max-width: 760px; margin: 38px auto 0; }
+    .hero-stats .hs-item { text-align: center; }
+    .hero-stats .hs-num { font-size: clamp(22px, 4vw, 30px); font-weight: 800; color: #00c2b2; line-height: 1.1; }
+    .hero-stats .hs-label { font-size: 12px; letter-spacing: 0.6px; color: #90a4ae; text-transform: uppercase; margin-top: 4px; }
+    .hero-stats .hs-sep { width: 1px; background: rgba(255,255,255,0.12); align-self: stretch; }
+
+    /* ABOUT THE INSTRUCTOR */
+    .instructor-wrap { display: grid; grid-template-columns: 240px 1fr; gap: 36px; align-items: center; margin-top: 32px; background: rgba(255,255,255,0.04); border: 1px solid rgba(0,194,178,0.22); border-radius: 16px; padding: 32px; }
+    .instructor-photo { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; justify-self: center; border: 3px solid #00c2b2; box-shadow: 0 0 0 6px rgba(0,194,178,0.12), 0 14px 36px rgba(0,0,0,0.45); background: #0e2040; }
+    .instructor-body h3 { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+    .instructor-role { font-size: 13px; font-weight: 600; letter-spacing: 0.5px; color: #00c2b2; text-transform: uppercase; margin-bottom: 16px; }
+    .instructor-body p { font-size: 15px; color: #cfd8dc; margin-bottom: 14px; }
+    .instructor-creds { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 18px; }
+    .instructor-creds li { background: rgba(0,194,178,0.07); border: 1px solid rgba(0,194,178,0.18); border-radius: 8px; padding: 12px 14px; }
+    .instructor-creds .ic-num { font-size: 19px; font-weight: 800; color: #fff; line-height: 1.1; }
+    .instructor-creds .ic-label { font-size: 12px; color: #90a4ae; margin-top: 3px; }
+
+    @media (max-width: 620px) {
+      .instructor-wrap { grid-template-columns: 1fr; gap: 22px; padding: 26px 22px; text-align: center; }
+      .instructor-role { text-align: center; }
+      .instructor-creds { text-align: left; }
+      .hero-stats .hs-sep { display: none; }
+    }
 
     /* ── WHO IS THIS FOR ── */
     .audience-list {
@@ -499,6 +566,16 @@
   <h1>Learn AI in <span>2 Hours/Day</span>.<br>No Technical Background Needed.</h1>
   <p class="subtitle">A practical workshop for professionals in finance, marketing, sales, and HR who want to automate the repetitive parts of their job — starting the very next day.</p>
   <a href="#register" class="cta-btn" onclick="event.preventDefault();document.getElementById('register').scrollIntoView({behavior:'smooth'});">See Next Session →</a>
+
+  <div class="hero-stats">
+    <div class="hs-item"><div class="hs-num">100+</div><div class="hs-label">Professionals trained</div></div>
+    <div class="hs-sep"></div>
+    <div class="hs-item"><div class="hs-num">21+</div><div class="hs-label">Years' experience</div></div>
+    <div class="hs-sep"></div>
+    <div class="hs-item"><div class="hs-num">2 hrs<span style="font-size:14px;">/day</span></div><div class="hs-label">Live online</div></div>
+    <div class="hs-sep"></div>
+    <div class="hs-item"><div class="hs-num">100%</div><div class="hs-label">Refund guarantee</div></div>
+  </div>
 </div>
 
 <!-- ═══════════════════════ PROBLEM ═══════════════════════ -->
@@ -589,7 +666,33 @@
 
 <hr class="divider" />
 
-<!-- ═══════════════════════ WHO IS THIS FOR ═══════════════════════ -->
+<!-- ABOUT THE INSTRUCTOR -->
+<section>
+  <div class="section-label">About the Instructor</div>
+  <h2>Learn from someone who has done the work — and taught it.</h2>
+
+  <div class="instructor-wrap">
+    <img class="instructor-photo" src="assets/instructor-manu.png"
+         alt="Manu, AI Kickstarter instructor — Master's in Computer Engineering and MBA, with 21+ years in Sales & Business Development" />
+    <div class="instructor-body">
+      <h3>Manu</h3>
+      <div class="instructor-role">AI Trainer · Sales &amp; Business Development Leader</div>
+      <p>Manu has spent <strong>21+ years in senior Sales &amp; Business Development roles across global organizations</strong> — so he knows first-hand the repetitive, high-pressure work that fills a professional's day. He now helps non-technical people put AI to work on exactly that.</p>
+      <p>He holds a <strong>Master's in Computer Engineering</strong> and an <strong>MBA in Marketing &amp; IT Operations</strong> from globally top-ranked universities — a rare blend of deep technical grounding and real business experience. That mix is why his sessions stay practical: no jargon, no theory for its own sake, just what works.</p>
+      <p>To date he has trained <strong>100+ working professionals and entrepreneurs with no software background</strong>, along with <strong>three companies through corporate workshops</strong> — always starting from the brass tacks and ending with real, repeatable use cases people apply the very next day.</p>
+      <ul class="instructor-creds">
+        <li><div class="ic-num">100+</div><div class="ic-label">Professionals &amp; founders trained</div></li>
+        <li><div class="ic-num">3</div><div class="ic-label">Companies trained (corporate)</div></li>
+        <li><div class="ic-num">21+ yrs</div><div class="ic-label">Sales &amp; BD leadership</div></li>
+        <li><div class="ic-num">2</div><div class="ic-label">Master's degrees · Engineering &amp; MBA</div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- WHO IS THIS FOR -->
 <section>
   <div class="section-label">Who This Is For</div>
   <h2>Built for professionals who work with words, numbers, and people — not code.</h2>
@@ -622,7 +725,7 @@
   <div class="format-row">
     <div class="format-item">
       <div class="fi-label">Date</div>
-      <div class="fi-value" id="fmt-date">Saturday, June 6</div>
+      <div class="fi-value" id="fmt-date">Saturday–Sunday, June 20–21</div>
     </div>
     <div class="format-item">
       <div class="fi-label">Time</div>
