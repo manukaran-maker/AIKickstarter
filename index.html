@@ -44,16 +44,20 @@
     {
       "@type": "Person",
       "@id": "https://manukaran-maker.github.io/AIKickstarter/#instructor",
-      "name": "Manu",
+      "name": "Manu Karan",
       "jobTitle": "AI Trainer & Sales / Business Development Leader",
-      "description": "Master's in Computer Engineering and an MBA in Marketing & IT Operations, with 21+ years in senior Sales & Business Development roles across global organizations. Has trained 100+ professionals and entrepreneurs and 3 companies through corporate workshops.",
+      "description": "Manu Karan has 21+ years in senior Sales & Business Development roles across global organizations. He holds an MBA from ISB Hyderabad and a Master's in Computer Engineering from North Carolina State University (USA), and is AI-certified. He has trained 100+ professionals and entrepreneurs, plus 3 companies through corporate workshops.",
+      "alumniOf": [
+        { "@type": "CollegeOrUniversity", "name": "Indian School of Business (ISB), Hyderabad" },
+        { "@type": "CollegeOrUniversity", "name": "North Carolina State University, USA" }
+      ],
       "worksFor": {
         "@id": "https://manukaran-maker.github.io/AIKickstarter/#org"
       }
     },
     {
       "@type": "Course",
-      "name": "AI Kickstarter for Professionals",
+      "name": "AI Kickstarter — AI Workshop for Professionals & Business Leaders",
       "description": "A live, hands-on AI workshop teaching non-technical professionals and business leaders how to automate everyday work — email, finance, marketing and sales — with AI. No coding required.",
       "url": "https://manukaran-maker.github.io/AIKickstarter/",
       "provider": {
@@ -136,7 +140,7 @@
           "name": "Who is this workshop designed for?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Business owners, team leads, and professionals in finance, marketing, sales, HR and operations who want to use AI in their actual day-to-day work."
+            "text": "It's an AI workshop for managers, executives and professionals — business owners, team leads and people in finance, marketing, sales, HR and operations who want to use AI in their actual day-to-day work."
           }
         },
         {
@@ -520,6 +524,44 @@
       #session-banner { font-size: 13px; }
     }
     /* ── NEW COMPONENTS ── */
+    /* hero credibility card */
+    .hero-cred { display:inline-flex; align-items:center; gap:16px; margin:30px auto 0; padding:14px 20px; background:rgba(255,255,255,0.04); border:1px solid rgba(0,194,178,0.25); border-radius:14px; text-align:left; max-width:700px; }
+    .hero-cred-photo { width:60px; height:60px; border-radius:50%; object-fit:cover; border:2px solid #00c2b2; flex-shrink:0; }
+    .hero-cred-name { font-size:15px; color:#cfd8dc; margin-bottom:8px; }
+    .hero-cred-name strong { color:#fff; }
+    .hero-cred-chips { display:flex; flex-wrap:wrap; gap:6px 8px; }
+    .hero-cred-chips span { font-size:11.5px; font-weight:600; color:#80cbc4; background:rgba(0,194,178,0.1); border:1px solid rgba(0,194,178,0.25); border-radius:20px; padding:4px 10px; }
+    /* social proof strip */
+    .social-proof { max-width:980px; margin:0 auto; padding:34px 24px; text-align:center; }
+    .sp-title { font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:#607d8b; margin-bottom:18px; }
+    .sp-logos { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:14px 30px; }
+    .sp-logos span, .sp-logos a { font-size:17px; font-weight:700; color:#b0bec5; letter-spacing:.3px; text-decoration:none; opacity:.9; }
+    .sp-logos a:hover { color:#00c2b2; }
+    /* urgency */
+    .urgency { display:flex; align-items:flex-start; gap:8px; max-width:480px; margin:0 auto 18px; padding:12px 18px; background:rgba(255,193,7,0.08); border:1px solid rgba(255,193,7,0.35); border-radius:10px; font-size:14px; color:#ffd98a; text-align:left; }
+    .urgency strong { color:#fff; }
+    /* what you'll leave with */
+    .leave-grid { list-style:none; display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px; margin-top:28px; }
+    .leave-grid li { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:14px 16px 14px 40px; position:relative; font-size:15px; color:#cfd8dc; }
+    .leave-grid li::before { content:'\2713'; position:absolute; left:16px; color:#00c2b2; font-weight:800; }
+    /* roi */
+    .roi-card { background:rgba(255,255,255,0.04); border:1px solid rgba(0,194,178,0.25); border-radius:14px; padding:28px; margin-top:28px; }
+    .roi-controls label { display:block; font-size:15px; color:#cfd8dc; margin-bottom:14px; }
+    .roi-controls label strong { color:#00c2b2; }
+    .roi-controls input[type=range] { width:100%; accent-color:#00c2b2; height:6px; }
+    .roi-results { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:26px; }
+    .roi-stat { text-align:center; background:rgba(0,194,178,0.07); border:1px solid rgba(0,194,178,0.18); border-radius:10px; padding:18px 10px; }
+    .roi-num { font-size:clamp(22px,4vw,30px); font-weight:800; color:#00c2b2; line-height:1.1; }
+    .roi-lbl { font-size:12px; color:#90a4ae; margin-top:6px; }
+    .roi-foot { margin-top:20px; font-size:15px; color:#b0bec5; }
+    .roi-foot strong { color:#fff; }
+    @media (max-width:480px){ .roi-results { grid-template-columns:1fr; } }
+    /* final-cta trust row */
+    .trust-row { display:flex; flex-wrap:wrap; justify-content:center; gap:14px 30px; max-width:520px; margin:30px auto 0; }
+    .trust-row .tr-item { text-align:center; }
+    .trust-row .tr-item strong { display:block; font-size:20px; font-weight:800; color:#00c2b2; }
+    .trust-row .tr-item span { font-size:12px; color:#90a4ae; }
+    @media (max-width:560px){ .hero-cred { flex-direction:column; text-align:center; align-items:center; } .hero-cred-chips { justify-content:center; } }
     .insight { margin: 22px 0 8px; padding: 18px 22px; background: rgba(0,194,178,0.07); border-left: 3px solid #00c2b2; border-radius: 8px; font-size: 17px; line-height: 1.55; color: #e8eaf0; }
     .insight strong { color: #fff; }
     .insight em { color: #00c2b2; font-style: normal; font-weight: 600; }
@@ -731,9 +773,9 @@
 
       // Update price tag and headline
       document.getElementById("cta-headline").innerHTML =
-        "Stop watching AI change your industry.<br>Start using it.";
+        "Ready to save hours every week?";
       document.getElementById("cta-sub").textContent =
-        "Seats are strictly limited to " + cfg.seats + " participants. Once full, registration closes.";
+        "Join the next AI Kickstarter cohort — limited seats, hands-on learning, practical business applications.";
 
       // Show/hide payment button vs coming soon
       var payBtn = document.getElementById("pay-btn");
@@ -806,7 +848,29 @@
     <div class="hs-sep"></div>
     <div class="hs-item"><div class="hs-num">100%</div><div class="hs-label">Refund guarantee</div></div>
   </div>
+
+  <div class="hero-cred">
+    <img class="hero-cred-photo" src="assets/instructor-manu.png" alt="Manu Karan — AI Kickstarter instructor" />
+    <div class="hero-cred-body">
+      <div class="hero-cred-name">Taught by <strong>Manu Karan</strong></div>
+      <div class="hero-cred-chips">
+        <span>21+ yrs experience</span>
+        <span>MBA · ISB Hyderabad</span>
+        <span>Computer Engineering · NC State, USA</span>
+        <span>AI Certified</span>
+        <span>100+ professionals trained</span>
+      </div>
+    </div>
+  </div>
 </div>
+
+<!-- ═══════════════════════ SOCIAL PROOF ═══════════════════════ -->
+<section class="social-proof" aria-label="Trusted by professionals from leading organizations">
+  <div class="sp-title">Trusted by professionals from leading organizations</div>
+  <div class="sp-logos">
+    <span>Deloitte</span><span>British Airways</span><span>CBRE</span><span>Crisil</span><span>LTIMindtree</span><span>FRV Australia</span><span>Everstage</span><a href="https://www.source.co" target="_blank" rel="noopener">Source</a><span>Vibrant Energy</span><span>Kana Mattress</span>
+  </div>
+</section>
 
 <!-- ═══════════════════════ SCARCITY STRIP ═══════════════════════ -->
 <div class="scarcity-bar">
@@ -889,6 +953,50 @@
 
 <hr class="divider" />
 
+<!-- ═══════════════════════ WHAT YOU'LL LEAVE WITH ═══════════════════════ -->
+<section>
+  <div class="section-label">What You'll Leave With</div>
+  <h2>Walk away with working systems — not just notes.</h2>
+  <p>This is practical AI training for professionals: by the end you'll have built real, reusable workflows and a toolkit you can put to work the very next day.</p>
+  <ul class="leave-grid">
+    <li>AI email assistant workflow</li>
+    <li>AI research &amp; prospecting workflow</li>
+    <li>AI reporting &amp; dashboard workflow</li>
+    <li>AI marketing-content workflow</li>
+    <li>PowerPoint, Excel &amp; Word automation</li>
+    <li>Ready-to-use prompt library</li>
+    <li>Practical templates for your role</li>
+    <li>Personalised use cases from your own work</li>
+    <li>A productivity playbook to keep improving</li>
+  </ul>
+  <div class="mid-cta"><a href="#register" class="cta-btn" data-scroll>Save my spot →</a></div>
+</section>
+
+<hr class="divider" />
+
+<!-- ═══════════════════════ ROI ═══════════════════════ -->
+<section id="roi">
+  <div class="section-label">The Payback</div>
+  <h2>What if AI saved you just 30 minutes a day?</h2>
+  <p>This AI productivity workshop pays for itself in time alone. Move the slider to see what even small daily savings add up to.</p>
+
+  <div class="roi-card">
+    <div class="roi-controls">
+      <label for="roi-min">Time saved per day: <strong><span id="roi-min-val">30</span> min</strong></label>
+      <input type="range" id="roi-min" min="10" max="120" step="5" value="30" aria-label="Minutes saved per day" />
+    </div>
+    <div class="roi-results">
+      <div class="roi-stat"><div class="roi-num" id="roi-month">10 hrs</div><div class="roi-lbl">saved per month</div></div>
+      <div class="roi-stat"><div class="roi-num" id="roi-year">120 hrs</div><div class="roi-lbl">saved per year</div></div>
+      <div class="roi-stat"><div class="roi-num" id="roi-days">15 days</div><div class="roi-lbl">working days / year</div></div>
+    </div>
+  </div>
+  <p class="roi-foot">Based on 20 working days a month. <strong>Most professionals recover the cost of this workshop through time savings alone</strong> — often within the first week.</p>
+  <div class="mid-cta"><a href="#register" class="cta-btn" data-scroll>Reserve my seat →</a></div>
+</section>
+
+<hr class="divider" />
+
 <!-- ═══════════════════════ TESTIMONIALS ═══════════════════════ -->
 <section>
   <div class="section-label">What Past Participants Say</div>
@@ -915,9 +1023,8 @@
   </div>
 
   <div class="affil">
-    <div class="affil-label">Professionals from these organisations have attended</div>
-    <div class="affil-logos"><span>Deloitte</span><span>British Airways</span><span>CBRE</span><span>LTIMindtree</span><span>Crisil</span><span>FRV Australia</span><span>Everstage</span><a href="https://www.source.co" target="_blank" rel="noopener">Source</a><span>Vibrant Energy</span><span>Kana Mattress</span></div>
-    <div class="affil-note">Past cohorts have also included entrepreneurs, senior business leaders and practising doctors.</div>
+    <div class="affil-label">Who attends our cohorts</div>
+    <div class="affil-note" style="margin-top:0;">Past cohorts have spanned entrepreneurs, senior business leaders and practising doctors — across finance, marketing, sales, operations and healthcare.</div>
   </div>
 
   <div class="mid-cta"><a href="#register" class="cta-btn" data-scroll>Save my spot →</a></div>
@@ -927,17 +1034,17 @@
 
 <!-- ABOUT THE INSTRUCTOR -->
 <section>
-  <div class="section-label">Why Learn From Manu?</div>
+  <div class="section-label">Why Learn From Manu Karan?</div>
   <h2>Learn from someone who has done the work — and taught it.</h2>
 
   <div class="instructor-wrap">
     <img class="instructor-photo" src="assets/instructor-manu.png"
          alt="Manu, AI Kickstarter instructor — Master's in Computer Engineering and MBA, with 21+ years in Sales & Business Development" />
     <div class="instructor-body">
-      <h3>Manu</h3>
+      <h3>Manu Karan</h3>
       <div class="instructor-role">AI Trainer · Sales &amp; Business Development Leader</div>
       <p>Manu has spent <strong>21+ years in senior Sales &amp; Business Development roles across global organizations</strong> — so he knows first-hand the repetitive, high-pressure work that fills a professional's day. He now helps non-technical people put AI to work on exactly that.</p>
-      <p>He holds a <strong>Master's in Computer Engineering</strong> and an <strong>MBA in Marketing &amp; IT Operations</strong> from globally top-ranked universities — a rare blend of deep technical grounding and real business experience. That mix is why his sessions stay practical: no jargon, no theory for its own sake, just what works.</p>
+      <p>He holds <strong>an MBA from ISB Hyderabad</strong> and a <strong>Master's in Computer Engineering from North Carolina State University (USA)</strong>, and is <strong>AI-certified</strong> — a rare blend of deep technical grounding and real business experience. That mix is why his sessions stay practical: no jargon, no theory for its own sake, just what works.</p>
       <p>To date he has trained <strong>100+ working professionals and entrepreneurs with no software background</strong>, along with <strong>three companies through corporate workshops</strong> — always starting from the brass tacks and ending with real, repeatable use cases people apply the very next day.</p>
       <p>He uses these AI tools hands-on every day — and built this workshop from the exact workflows he relies on himself, so everything you learn is field-tested, not theory.</p>
 
@@ -945,7 +1052,7 @@
         <li><div class="ic-num">100+</div><div class="ic-label">Professionals &amp; founders trained</div></li>
         <li><div class="ic-num">3</div><div class="ic-label">Companies trained (corporate)</div></li>
         <li><div class="ic-num">21+ yrs</div><div class="ic-label">Sales &amp; BD leadership</div></li>
-        <li><div class="ic-num">2</div><div class="ic-label">Master's degrees · Engineering &amp; MBA</div></li>
+        <li><div class="ic-num">2</div><div class="ic-label">Degrees · ISB &amp; NC State (USA)</div></li>
       </ul>
       <div class="mid-cta" style="text-align:left;"><a href="#register" class="cta-btn" data-scroll>Join the workshop →</a></div>
     </div>
@@ -1023,7 +1130,7 @@
   <div class="faq-list">
     <details class="faq-item"><summary>Do I need any technical knowledge or coding skills?</summary><div class="faq-a">No. The workshop is built specifically for non-technical professionals. If you can use email and a web browser, you can follow along — there is no code, ever.</div></details>
     <details class="faq-item"><summary>Is prior AI experience required?</summary><div class="faq-a">None. We start from the very basics, including setting up the tools, and build up to real, practical use cases for your job. Complete beginners are welcome.</div></details>
-    <details class="faq-item"><summary>Who is this workshop designed for?</summary><div class="faq-a">Business owners, team leads, and professionals in finance, marketing, sales, HR and operations who want to use AI in their actual day-to-day work.</div></details>
+    <details class="faq-item"><summary>Who is this workshop designed for?</summary><div class="faq-a">It's an AI workshop for managers, executives and professionals — business owners, team leads and people in finance, marketing, sales, HR and operations who want to use AI in their actual day-to-day work.</div></details>
     <details class="faq-item"><summary>How is this different from free videos online?</summary><div class="faq-a">Free content shows you what AI can do. This is a small, live, hands-on cohort where you apply it to your own real tasks and leave with working setups — not just inspiration.</div></details>
     <details class="faq-item"><summary>What practical skills will I gain?</summary><div class="faq-a">You'll automate email drafting and triage, reconcile and summarise financial data, generate marketing content and campaigns, and prepare sales outreach, pitch decks and RFP/RFQ responses. You'll also learn to create and edit PowerPoint decks, Excel spreadsheets and Word documents with AI — so the files get built for you, without doing the manual work yourself.</div></details>
     <details class="faq-item"><summary>Can I apply what I learn immediately?</summary><div class="faq-a">Yes. Every module uses real examples from your job function, so most participants put at least one workflow to use the very next day.</div></details>
@@ -1039,10 +1146,12 @@
 
   <div id="cta-active">
     <div class="section-label" style="margin-bottom:12px;">Reserve Your Spot</div>
-    <h2 id="cta-headline">Stop watching AI change your industry.<br>Start using it.</h2>
-    <p id="cta-sub">Seats are strictly limited to 10 participants. Once full, registration closes.</p>
+    <h2 id="cta-headline">Ready to save hours every week?</h2>
+    <p id="cta-sub">Join the next AI Kickstarter cohort — limited seats, hands-on learning, practical business applications.</p>
 
     <div class="price-tag" id="cta-price-tag"><span>$</span>100 <span style="font-size:16px;vertical-align:middle;font-weight:400;color:#b0bec5;">USD</span></div>
+
+    <div class="urgency">⚡ <span><strong>Limited cohort — only 10 seats.</strong> Small-group, hands-on learning. Registration closes when seats are filled.</span></div>
 
     <div class="reg-box">
       <div class="reg-title" id="reg-title">Register for the Session</div>
@@ -1063,6 +1172,13 @@
     <div class="guarantee" style="max-width:480px;margin:28px auto 0;">
       <div class="g-icon">🛡</div>
       <p><strong>Full refund if it's not useful.</strong> If you attend the session and don't find it practically valuable, we'll refund you in full. No questions asked.</p>
+    </div>
+
+    <div class="trust-row">
+      <div class="tr-item"><strong>21+ yrs</strong><span>Experience</span></div>
+      <div class="tr-item"><strong>100+</strong><span>Professionals trained</span></div>
+      <div class="tr-item"><strong>Max 10</strong><span>Small cohort</span></div>
+      <div class="tr-item"><strong>100%</strong><span>Refund guarantee</span></div>
     </div>
   </div>
 
@@ -1105,6 +1221,19 @@
     var a = e.target.closest("[data-scroll]");
     if(a){ e.preventDefault(); var t=document.getElementById("register"); if(t) t.scrollIntoView({behavior:"smooth"}); }
   });
+  (function(){
+    var roi = document.getElementById("roi-min");
+    if(!roi) return;
+    function upd(){
+      var m = +roi.value;
+      var perMonth = m*20/60, perYear = perMonth*12;
+      document.getElementById("roi-min-val").textContent = m;
+      document.getElementById("roi-month").textContent = (Math.round(perMonth*10)/10) + " hrs";
+      document.getElementById("roi-year").textContent = Math.round(perYear) + " hrs";
+      document.getElementById("roi-days").textContent = Math.round(perYear/8) + " days";
+    }
+    roi.addEventListener("input", upd); upd();
+  })();
 </script>
 
 </body>
