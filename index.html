@@ -647,7 +647,27 @@
     return null;
   }
 
+  // Optional manual override: ?region=in|uk|eu|us (or any 2-letter ISO country code)
+  function getRegionOverride() {
+    try {
+      var q = new URLSearchParams(window.location.search);
+      var r = (q.get("region") || q.get("batch") || q.get("geo") || "").trim().toLowerCase();
+      if (!r) return null;
+      var map = {
+        in:"IN", india:"IN",
+        gb:"GB", uk:"GB", britain:"GB",
+        eu:"DE", europe:"DE",
+        us:"US", usa:"US", world:"US", row:"US", intl:"US", international:"US"
+      };
+      if (map[r]) return map[r];
+      if (/^[a-z]{2}$/.test(r)) return r.toUpperCase();
+      return null;
+    } catch (e) { return null; }
+  }
+
   function initPage() {
+    var override = getRegionOverride();
+    if (override) { applyGeo(override); initBanner(); return; }
     fetch("https://ipapi.co/json/")
       .then(function(r) {
         if (!r.ok) throw new Error("ipapi failed");
